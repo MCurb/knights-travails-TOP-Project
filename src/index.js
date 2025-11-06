@@ -25,13 +25,15 @@ function knightMoves(start, end) {
     }
 
     //if it isn't visited then:
-    if (!visitedPositions.has(currentNode)) {
+    if (!hasArray(visitedPositions, currentNode)) {
       //add to visited
       visitedPositions.add(currentNode);
 
       //and then enqueue all its getNeighbors(dequeued)
       getPossibleMoves(currentNode).forEach((neighbor) => {
-        parentDict[neighbor] = currentNode;
+        if (!(neighbor in parentDict)) {
+          parentDict[neighbor] = currentNode;
+        }
         queue.enqueue(neighbor);
 
         //Here the previous parentDict are being overwritten, so the start node doesn't point to null anymore.
@@ -87,7 +89,7 @@ function getPossibleMoves(position) {
   // Or maybe removing them once pushed
   // I need to traverse the array of arrays, and do it from the last array position
   // if an array position has a cordinate smaller than 0 or larger than 7, remove the array of the possibleMoves arr.
-  for (let i = possibleMoves.length - 1; i > 0; i--) {
+  for (let i = possibleMoves.length - 1; i >= 0; i--) {
     for (let j = 0; j < 2; j++) {
       if (possibleMoves[i][j] < 0 || possibleMoves[i][j] > 7) {
         possibleMoves.splice(i, 1);
@@ -102,7 +104,7 @@ function getPossibleMoves(position) {
 function reconstructPath(parentDict, end) {
   const path = [];
   let node = end;
-  while (!node) {
+  while (node) {
     //node will never be null because start node in parentDict was overwritten
 
     //Add node to the beginning of the path
@@ -114,5 +116,15 @@ function reconstructPath(parentDict, end) {
   return path;
 }
 
-// console.log(knightMoves([3, 3], [1, 3]));
-console.log(getPossibleMoves([0, 0]));
+//Go through each set item and see if there's one equal to the target
+function hasArray(set, target) {
+  return [...set].some((arr) =>
+    arr.every((value, index) => value === target[index]),
+  );
+}
+
+const path = knightMoves([3, 3], [7, 7]);
+console.log(`You made it in ${path.length - 1} moves! Here's your path:`);
+path.forEach((move) => {
+  console.log(move);
+});

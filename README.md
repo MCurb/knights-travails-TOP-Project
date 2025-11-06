@@ -1,5 +1,6 @@
 # ♞ Knight Travails
 This project is part of my **Data Structures and Algorithms** practice from [The Odin Project](https://www.theodinproject.com/lessons/javascript-knights-travails).
+
 It focuses on finding the **shortest path a knight can take** on a standard chessboard — from a given start position to a target position — using an **implicit graph** and **Breadth-First Search (BFS).**
 
 ## 🧠 Key Learnings
@@ -36,4 +37,5 @@ where both x and y are integers from 0 to 7.
 
 ## 🧑‍💻 Author
 **Marcos Curbeco**
+
 [The Odin Project Student](https://www.theodinproject.com/dashboard) | Web Developer in Progress

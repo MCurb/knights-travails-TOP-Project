@@ -20,7 +20,6 @@ knightMoves([3, 3], [0, 7]);
 // [ [3, 3], [4, 5], [2, 6], [0, 7] ]
 ```
 Each position is represented by a coordinate pair [x, y],
-
 where both x and y are integers from 0 to 7.
 
 ## 🧩 How It Works

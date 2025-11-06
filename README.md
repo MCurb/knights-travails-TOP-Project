@@ -1,6 +1,5 @@
 # ♞ Knight Travails
-This project is part of my **Data Structures and Algorithms** practice from [The Odin Project](https://www.theodinproject.com/lessons/javascript-knights-travails).
-
+This project is part of my **Data Structures and Algorithms** practice from [The Odin Project](https://www.theodinproject.com/lessons/javascript-knights-travails).<br>
 It focuses on finding the **shortest path a knight can take** on a standard chessboard — from a given start position to a target position — using an **implicit graph** and **Breadth-First Search (BFS).**
 
 ## 🧠 Key Learnings
@@ -19,7 +18,7 @@ knightMoves([3, 3], [0, 7]);
 // You made it in 3 moves! Here's your path:
 // [ [3, 3], [4, 5], [2, 6], [0, 7] ]
 ```
-Each position is represented by a coordinate pair [x, y],
+Each position is represented by a coordinate pair [x, y],<br>
 where both x and y are integers from 0 to 7.
 
 ## 🧩 How It Works
@@ -36,6 +35,5 @@ where both x and y are integers from 0 to 7.
 - Algorithmic Thinking
 
 ## 🧑‍💻 Author
-**Marcos Curbeco**
-
+**Marcos Curbeco**<br>
 [The Odin Project Student](https://www.theodinproject.com/dashboard) | Web Developer in Progress

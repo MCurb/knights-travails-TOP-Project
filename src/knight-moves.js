@@ -1,5 +1,5 @@
-import { reconstructPath, hasArray, getPossibleMoves } from './utils.js';
-import { Queue } from './queue.js';
+import { reconstructPath, hasArray, getPossibleMoves } from './utils';
+import { Queue } from './queue';
 
 export function knightMoves(start, end) {
   let path;

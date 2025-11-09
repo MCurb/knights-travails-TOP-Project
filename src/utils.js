@@ -1,22 +1,23 @@
 export function getPossibleMoves(position) {
   const possibleMoves = [];
+  const directions = [
+    [2, 1],
+    [1, 2],
+    [-1, 2],
+    [-2, 1],
+    [-2, -1],
+    [-1, -2],
+    [1, -2],
+    [2, -1],
+  ];
 
-  possibleMoves.push([position[0] + 1, position[1] + 2]);
-  possibleMoves.push([position[0] + 1, position[1] - 2]);
-  possibleMoves.push([position[0] + 2, position[1] + 1]);
-  possibleMoves.push([position[0] + 2, position[1] - 1]);
-  possibleMoves.push([position[0] - 1, position[1] - 2]);
-  possibleMoves.push([position[0] - 1, position[1] + 2]);
-  possibleMoves.push([position[0] - 2, position[1] - 1]);
-  possibleMoves.push([position[0] - 2, position[1] + 1]);
+  //Destructure and push to possibleMoves if valid move
+  const [x, y] = [position[0], position[1]];
 
-  //Filter out invalid moves (off the board)
-  for (let i = possibleMoves.length - 1; i >= 0; i--) {
-    for (let j = 0; j < 2; j++) {
-      if (possibleMoves[i][j] < 0 || possibleMoves[i][j] > 7) {
-        possibleMoves.splice(i, 1);
-        break;
-      }
+  for (const [dx, dy] of directions) {
+    const move = [dx + x, dy + y];
+    if (isValidMove) {
+      possibleMoves.push(move);
     }
   }
 
@@ -41,4 +42,8 @@ export function hasArray(set, target) {
   return [...set].some((arr) =>
     arr.every((value, index) => value === target[index]),
   );
+}
+
+function isValidMove(x, y) {
+  return x >= 0 && x < 8 && y >= 0 && y < 8;
 }

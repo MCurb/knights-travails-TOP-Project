@@ -1,16 +1,16 @@
-export function reconstructPath(parentDict, end) {
+export function reconstructPath(parentDict, finalPosition) {
   const path = [];
-  let node = end;
-  while (node) {
-    path.unshift(node);
+  let move = finalPosition;
 
-    //Find "parent" node
-    node = parentDict[node];
+  while (move) {
+    path.unshift(move);
+    //Find previous move:
+    move = parentDict[move];
   }
-
   return path;
 }
 
-export function isValidMove(x, y) {
+export function isValid(cordinates) {
+  const [x, y] = cordinates;
   return x >= 0 && x < 8 && y >= 0 && y < 8;
 }

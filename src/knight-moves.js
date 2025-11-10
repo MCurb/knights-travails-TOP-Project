@@ -1,19 +1,21 @@
-import { reconstructPath, isValidMove } from './utils';
+import { reconstructPath, isValid } from './utils';
 import { Queue } from './queue';
 
 export function knightMoves(start, end) {
-  let path;
-  const queue = new Queue();
-  const visitedPositions = new Set();
   //Track parents to reconstruct path later
   const parentDict = {};
 
+  let path;
+  const queue = new Queue();
+  const visited = new Set();
+
+  //Init
   queue.enqueue(start);
   parentDict[start] = null;
 
   while (!queue.isEmpty()) {
-    let activePosition = queue.dequeue();
-    const [x, y] = activePosition;
+    const position = queue.dequeue();
+    const [x, y] = position;
 
     //If end position is found, reconstruct path
     if (x === end[0] && y === end[1]) {
@@ -22,8 +24,10 @@ export function knightMoves(start, end) {
     }
 
     //If node hasn't been visited yet:
-    if (!visitedPositions.has(activePosition.toString())) {
-      visitedPositions.add(activePosition.toString());
+    const positionString = position.toString();
+
+    if (!visited.has(positionString)) {
+      visited.add(positionString);
 
       for (const [dx, dy] of [
         [2, 1],
@@ -36,15 +40,14 @@ export function knightMoves(start, end) {
         [2, -1],
       ]) {
         //Calculate possible move
-        const [nx, ny] = [x + dx, y + dy];
-        const possibleMove = [nx, ny];
+        const move = [x + dx, y + dy];
 
-        if (isValidMove(nx, ny)) {
-          queue.enqueue(possibleMove);
+        if (isValid(move)) {
+          queue.enqueue(move);
 
           //Remember parent of the possible move
-          if (!(possibleMove in parentDict)) {
-            parentDict[possibleMove] = activePosition;
+          if (!(move in parentDict)) {
+            parentDict[move] = position;
           }
         }
       }

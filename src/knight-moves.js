@@ -1,4 +1,4 @@
-import { reconstructPath, hasArray, getPossibleMoves } from './utils';
+import { reconstructPath, isValidMove } from './utils';
 import { Queue } from './queue';
 
 export function knightMoves(start, end) {
@@ -13,9 +13,10 @@ export function knightMoves(start, end) {
 
   while (!queue.isEmpty()) {
     let activePosition = queue.dequeue();
+    const [x, y] = activePosition;
 
     //If end position is found, reconstruct path
-    if (activePosition[0] === end[0] && activePosition[1] === end[1]) {
+    if (x === end[0] && y === end[1]) {
       path = reconstructPath(parentDict, end);
       break;
     }
@@ -24,14 +25,29 @@ export function knightMoves(start, end) {
     if (!visitedPositions.has(activePosition.toString())) {
       visitedPositions.add(activePosition.toString());
 
-      getPossibleMoves(activePosition).forEach((validMove) => {
-        //Remember the "parent" node
-        if (!(validMove in parentDict)) {
-          parentDict[validMove] = activePosition;
+      for (const [dx, dy] of [
+        [2, 1],
+        [1, 2],
+        [-1, 2],
+        [-2, 1],
+        [-2, -1],
+        [-1, -2],
+        [1, -2],
+        [2, -1],
+      ]) {
+        //Calculate possible move
+        const [nx, ny] = [x + dx, y + dy];
+        const possibleMove = [nx, ny];
+
+        if (isValidMove(nx, ny)) {
+          queue.enqueue(possibleMove);
+
+          //Remember parent of the possible move
+          if (!(possibleMove in parentDict)) {
+            parentDict[possibleMove] = activePosition;
+          }
         }
-        //Enqueue all valid moves
-        queue.enqueue(validMove);
-      });
+      }
     }
   }
 

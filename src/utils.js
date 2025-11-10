@@ -37,13 +37,6 @@ export function reconstructPath(parentDict, end) {
   return path;
 }
 
-//Helper function to check if Set contains an array
-export function hasArray(set, target) {
-  return [...set].some((arr) =>
-    arr.every((value, index) => value === target[index]),
-  );
-}
-
 function isValidMove(x, y) {
   return x >= 0 && x < 8 && y >= 0 && y < 8;
 }

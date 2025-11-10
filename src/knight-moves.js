@@ -21,8 +21,8 @@ export function knightMoves(start, end) {
     }
 
     //If node hasn't been visited yet:
-    if (!hasArray(visitedPositions, activePosition)) {
-      visitedPositions.add(activePosition);
+    if (!visitedPositions.has(activePosition.toString())) {
+      visitedPositions.add(activePosition.toString());
 
       getPossibleMoves(activePosition).forEach((validMove) => {
         //Remember the "parent" node
